@@ -1,3 +1,3 @@
-import 'package:project/features/otp/presentation/views/otp_screen.dart';
-
-const OtpScreen = '/';
+const loginScreen = '/';
+const otpScreen = '/otp-screen';
+const mapScreen ='/map-screen';

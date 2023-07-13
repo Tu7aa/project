@@ -1,16 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project/core/app_router.dart';
+import 'package:project/core/utils/strings.dart';
 
+import 'features/login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
 import 'firebase_options.dart';
 
-void main()async {
+String initialRoute = loginScreen;
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    if (user == null) {
+      initialRoute = loginScreen;
+    } else {
+      initialRoute = mapScreen;
+    }
+  });
   runApp(MyApp(
-    appRouter: AppRouter(),
+    appRouter: AppRouter(mobileAuthCubit: MobileAuthCubit()),
   ));
 }
 
@@ -25,6 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: appRouter.generateRoute,
+      initialRoute: initialRoute,
     );
   }
 }
