@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:project/core/utils/colors.dart';
-import 'package:project/features/login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
 
-import '../../../../core/utils/strings.dart';
+import '../../../../../core/utils/strings.dart';
+import '../view_model/mobile_auth/mobile_auth_cubit.dart';
+
 
 // ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
@@ -18,12 +19,12 @@ class OtpScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Verify your phone number',
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Container(

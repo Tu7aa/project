@@ -3,11 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project/core/app_router.dart';
 import 'package:project/core/utils/strings.dart';
-
-import 'features/login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
+import 'features/auth/mobile_login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
 import 'firebase_options.dart';
 
-String initialRoute = loginScreen;
+late String initialRoute ;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,7 @@ void main() async {
   );
   FirebaseAuth.instance.authStateChanges().listen((user) {
     if (user == null) {
-      initialRoute = loginScreen;
+      initialRoute = splashScreen;
     } else {
       initialRoute = mapScreen;
     }

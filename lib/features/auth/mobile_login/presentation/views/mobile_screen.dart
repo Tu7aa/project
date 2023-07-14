@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/features/login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
 
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/strings.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/strings.dart';
+
+import '../view_model/mobile_auth/mobile_auth_cubit.dart';
 
 // ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class MobileScreen extends StatelessWidget {
+  MobileScreen({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> _phoneFormKey = GlobalKey();
 
@@ -28,7 +29,7 @@ class LoginScreen extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 2),
           child: const Text(
-            'Please enter yout phone number to verify your account.',
+            'Please enter your phone number to verify your account.',
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -167,7 +168,6 @@ class LoginScreen extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is MobileAuthLoading) {
-
           showProgressIndicator(context);
         }
 
