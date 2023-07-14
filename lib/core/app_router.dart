@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/core/utils/strings.dart';
+import 'package:project/features/auth/sign_in/presentation/views/login_screen.dart';
 import 'package:project/features/map/presentation/views/map_screen.dart';
 import 'package:project/features/start_app/presentation/views/splash_screen.dart';
 import '../features/auth/mobile_login/presentation/view_model/mobile_auth/mobile_auth_cubit.dart';
@@ -16,13 +17,15 @@ class AppRouter {
 
   Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case loginScreen:
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
       case onBoardingPage:
         return MaterialPageRoute(builder: (context) => const OnBoardingPage());
       case splashScreen:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case mapScreen:
         return MaterialPageRoute(builder: (context) => MapScreen());
-      case loginScreen:
+      case mobileScreen:
         return MaterialPageRoute(
           builder: (context) => BlocProvider<MobileAuthCubit>.value(
             value: mobileAuthCubit,
