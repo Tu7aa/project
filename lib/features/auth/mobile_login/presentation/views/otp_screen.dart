@@ -4,6 +4,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:project/core/utils/colors.dart';
 
 import '../../../../../core/utils/strings.dart';
+import '../../../../../core/utils/styles.dart';
+import '../../../../../core/widgets/size_configs.dart';
 import '../view_model/mobile_auth/mobile_auth_cubit.dart';
 
 
@@ -16,13 +18,13 @@ class OtpScreen extends StatelessWidget {
   late String otpCode;
 
   Widget _buildIntroTexts() {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+         Text(
           'Verify your phone number',
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          style: kTitle2,
         ),
         const SizedBox(
           height: 30,
@@ -32,11 +34,11 @@ class OtpScreen extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: 'Enter your 6 digit code numbers sent to ',
-              style: TextStyle(color: Colors.black, fontSize: 18, height: 1.4),
+              style: kBodyText2,
               children: <TextSpan>[
                 TextSpan(
                   text: '$phoneNumber',
-                  style: TextStyle(color: AppColors.blue),
+                  style: kBodyText2.copyWith(color: kPrimaryColor),
                 ),
               ],
             ),
@@ -47,7 +49,7 @@ class OtpScreen extends StatelessWidget {
   }
 
   void showProgressIndicator(BuildContext context) {
-    AlertDialog alertDialog = AlertDialog(
+    AlertDialog alertDialog = const AlertDialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
       content: Center(
@@ -117,16 +119,16 @@ class OtpScreen extends StatelessWidget {
 
           _login(context);
         },
-        child: Text(
-          'Verify',
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        ),
         style: ElevatedButton.styleFrom(
           minimumSize: Size(110, 50),
-          primary: Colors.black,
+          primary: kSecondaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),
+        ),
+        child: const Text(
+          'Verify',
+          style: TextStyle(color: Colors.white, fontSize: 16,fontFamily: 'Klasik'),
         ),
       ),
     );
@@ -164,6 +166,8 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    double sizeV = SizeConfig.blockSizeV!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

@@ -15,7 +15,7 @@ void main() async {
   );
   FirebaseAuth.instance.authStateChanges().listen((user) {
     if (user == null) {
-      initialRoute = splashScreen;
+      initialRoute = loginScreen;
     } else {
       initialRoute = mapScreen;
     }

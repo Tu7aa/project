@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/strings.dart';
 
+import '../../../../../core/utils/styles.dart';
+import '../../../../../core/widgets/size_configs.dart';
 import '../view_model/mobile_auth/mobile_auth_cubit.dart';
 
 // ignore: must_be_immutable
@@ -18,22 +20,18 @@ class MobileScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+         Text(
           'What is your phone number?',
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          style: kTitle2,
         ),
         const SizedBox(
           height: 30,
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 2),
-          child: const Text(
+          child:  Text(
             'Please enter your phone number to verify your account.',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-            ),
+            style:kBodyText2.copyWith(fontFamily: 'Klasik'),
           ),
         ),
       ],
@@ -53,7 +51,7 @@ class MobileScreen extends StatelessWidget {
             ),
             child: Text(
               '${generateCountryFlag()} +20',
-              style: const TextStyle(fontSize: 18, letterSpacing: 2.0),
+              style: const TextStyle(fontSize: 18, letterSpacing: 2.0,fontFamily: 'Klasik'),
             ),
           ),
         ),
@@ -74,6 +72,7 @@ class MobileScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 letterSpacing: 2.0,
+                fontFamily: 'Klasik'
               ),
               decoration: const InputDecoration(border: InputBorder.none),
               cursorColor: Colors.black,
@@ -127,14 +126,14 @@ class MobileScreen extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           minimumSize: Size(110, 50),
-          primary: Colors.black,
+          primary: kSecondaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),
         ),
         child: const Text(
           'Next',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: Colors.white, fontSize: 16,fontFamily: 'Klasik'),
         ),
       ),
     );
@@ -194,6 +193,8 @@ class MobileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    double sizeV = SizeConfig.blockSizeV!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -201,20 +202,22 @@ class MobileScreen extends StatelessWidget {
           key: _phoneFormKey,
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 32, vertical: 88),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildIntroTexts(),
-                const SizedBox(
-                  height: 110,
-                ),
-                _buildPhoneFormField(),
-                const SizedBox(
-                  height: 70,
-                ),
-                _buildNextButton(context),
-                _buildPhoneNumberSubmitedBloc(),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildIntroTexts(),
+                  SizedBox(
+                    height: sizeV * 3,
+                  ),
+                  _buildPhoneFormField(),
+                  SizedBox(
+                    height: sizeV * 3,
+                  ),
+                  _buildNextButton(context),
+                  _buildPhoneNumberSubmitedBloc(),
+                ],
+              ),
             ),
           ),
         ),

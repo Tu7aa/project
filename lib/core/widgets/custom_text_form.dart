@@ -29,7 +29,7 @@ class CustomTextForm extends StatelessWidget {
           hintStyle: TextStyle(color:kSecondaryColor ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none),
+             ),
           suffixIcon: suffixIcon,
           suffixIconColor:kSecondaryColor,
           filled: true,
